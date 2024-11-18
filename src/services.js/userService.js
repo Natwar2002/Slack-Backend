@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import { StatusCodes } from "http-status-codes";
 
+import channelRepository from '../repositories/channelRepository.js';
 import userRepository from "../repositories/userRepository.js";
 import { createJWT } from '../utils/common/authUtils.js';
 import ClientError from '../utils/errors/clientError.js';

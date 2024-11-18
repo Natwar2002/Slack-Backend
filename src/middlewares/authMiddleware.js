@@ -1,8 +1,9 @@
 import { StatusCodes } from "http-status-codes";
 import jwt from 'jsonwebtoken';
-import { customErrorResponse } from "../utils/common/responseObject";
-import { JWT_SECRET } from "../config/serverConfig";
+
+import { JWT_SECRET } from "../config/serverConfig.js";
 import userRepository from '../repositories/userRepository.js'
+import { customErrorResponse } from "../utils/common/responseObject.js";
 
 export const isAuthenticated = async(req, res, next) => {
     try {
@@ -35,5 +36,6 @@ export const isAuthenticated = async(req, res, next) => {
         next();
     } catch (error) {
         console.log("Auth middleware error");
+        throw error;
     }
 }
