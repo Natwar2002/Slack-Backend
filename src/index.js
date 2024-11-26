@@ -4,6 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 import { Server } from 'socket.io';
 
 import connectDB from './config/dbConfig.js';
+import mailer from './config/mailConfig.js';
 import { PORT } from './config/serverConfig.js';
 import apiRouter from './routes/apiRouter.js';
 
@@ -30,7 +31,13 @@ io.on('connection', (socket) => {
     })
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
     console.log(`Server is running on http://localhost:${PORT}`);
     connectDB();
+    // const mailResponse = await mailer.sendMail({
+    //     from: 'natvarp6062@gmail.com',
+    //     to: 'natvarp6062@gmail.com',
+    //     subject: 'Welcome Email',
+    //     text: "Welcome to Slack App"
+    // });   
 });
