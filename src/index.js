@@ -4,7 +4,6 @@ import { StatusCodes } from 'http-status-codes';
 import { Server } from 'socket.io';
 
 import connectDB from './config/dbConfig.js';
-import mailer from './config/mailConfig.js';
 import { PORT } from './config/serverConfig.js';
 import apiRouter from './routes/apiRouter.js';
 
