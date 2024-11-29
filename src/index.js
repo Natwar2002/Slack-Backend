@@ -3,6 +3,7 @@ import { createServer } from 'http';
 import { StatusCodes } from 'http-status-codes';
 import { Server } from 'socket.io';
 
+import bullServerAdapter from './config/bullboardConfig.js';
 import connectDB from './config/dbConfig.js';
 import { PORT } from './config/serverConfig.js';
 import apiRouter from './routes/apiRouter.js';
@@ -14,6 +15,8 @@ const io = new Server(server);
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/ui', bullServerAdapter.getRouter());
 
 app.use('/api', apiRouter);
 
