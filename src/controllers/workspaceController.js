@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 
-import { addChannelToWorkspaceService, addMemberToWorkspaceSerivce, createWorkspaceService, deleteWorkspaceService, getWorkspaceByJoinCode, getWorkspaceService, getWorkspacesUserIsMemberOfService, updatedWorkspaceSerice } from "../services.js/workspaceService.js";
+import { addChannelToWorkspaceService, addMemberToWorkspaceSerivce, createWorkspaceService, deleteWorkspaceService, getWorkspaceByJoinCode, getWorkspaceService, getWorkspacesUserIsMemberOfService, updatedWorkspaceSerice } from "../services/workspaceService.js";
 import { customErrorResponse, internalErrorResponse, successResponse } from "../utils/common/responseObject.js"
 
 export const createWorkspaceController = async(req, res) => {

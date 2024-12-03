@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 
-import { isMemberPartOfWorkspaceService } from "../services.js/memberService.js";
+import { isMemberPartOfWorkspaceService } from "../services/memberService.js";
 import { customErrorResponse, internalErrorResponse, successResponse } from '../utils/common/responseObject.js';
 
 
