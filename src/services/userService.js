@@ -62,22 +62,3 @@ export async function signInService(data) {
         throw error;
     }
 }
-
-export const getChannelByIdService = async (channelId) => {
-    try {
-      const channel = await channelRepository.getById(channelId);
-  
-      if (!channel) {
-        throw new ClientError({
-          explanation: 'Channel not found',
-          message: 'Invalid channel ID',
-          statusCode: StatusCodes.NOT_FOUND
-        });
-      }
-  
-      return channel;
-    } catch (error) {
-      console.log('Get channel by ID service error:', error);
-      throw error;
-    }
-};
