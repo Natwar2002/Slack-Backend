@@ -61,3 +61,15 @@ export async function signInService(data) {
         throw error;
     }
 }
+
+export async function resetPas(email) {
+    const user = await userRepository.getByEmail(email);
+    if(!user) {
+        throw new ClientError({
+            explanation: "Invalid data sent from the client",
+            message: "No registered user found with this email",
+            statusCode: StatusCodes.BAD_REQUEST
+        });
+    }
+    
+}
