@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 
-import { addChannelToWorkspaceService, addMemberToWorkspaceSerivce, createWorkspaceService, deleteWorkspaceService, getWorkspaceByJoinCode, getWorkspaceService, getWorkspacesUserIsMemberOfService, updatedWorkspaceSerice } from "../services/workspaceService.js";
+import { addChannelToWorkspaceService, addMemberToWorkspaceSerivce, createWorkspaceService, deleteWorkspaceService, getWorkspaceByJoinCode, getWorkspaceService, getWorkspacesUserIsMemberOfService, resetWorkspaceJoinCodeService, updatedWorkspaceSerice } from "../services/workspaceService.js";
 import { customErrorResponse, internalErrorResponse, successResponse } from "../utils/common/responseObject.js"
 
 export const createWorkspaceController = async(req, res) => {
@@ -45,7 +45,7 @@ export const deleteWorkspaceController = async (req, res) => {
 export const getWorkspaceController = async(req, res) => {
     try {
         const response = await getWorkspaceService(req.params.workspaceId, req.user);
-        return res.status(StatusCodes.OK).json(successResponse(response, "Workspace deleted successfully"));
+        return res.status(StatusCodes.OK).json(successResponse(response, "Workspace fetched successfully"));
     } catch (error) {
         console.log(error);
         if(error.statusCode) {
@@ -106,3 +106,16 @@ export const addChannelToWorkspaceController = async (req, res) => {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(internalErrorResponse(error));
     }
 };
+
+export const resetJoinCodeController = async (req, res) => {
+    try {
+        const response = await resetWorkspaceJoinCodeService(req.params.workspaceId, req.user);
+        return res.status(StatusCodes.OK).json(successResponse(response, "Join code reset successfully"));
+    } catch (error) {
+        console.log(error);
+        if(error.statusCode) {
+            return res.status(error.statusCode).json(customErrorResponse(error));
+        }
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(internalErrorResponse(error));
+    }
+} 
