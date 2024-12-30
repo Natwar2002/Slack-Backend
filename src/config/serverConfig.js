@@ -12,3 +12,5 @@ export const MAIL_ID = process.env.MAIL_ID;
 export const MAIL_PASSWORD = process.env.MAIL_PASSWORD;
 export const REDIS_HOST = process.env.REDIS_HOST;
 export const REDIS_PORT = process.env.REDIS_PORT;
+export const APP_LINK = process.env.APP_LINK;
+export const ENABLE_EMAIL_VERIFICATION = process.env.ENABLE_EMAIL_VERIFICATION || false;
