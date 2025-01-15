@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import { JWT_SECRET } from "../config/serverConfig.js";
 import userRepository from '../repositories/userRepository.js'
-import { customErrorResponse } from "../utils/common/responseObject.js";
+import { customErrorResponse, internalErrorResponse } from "../utils/common/responseObject.js";
 
 export const isAuthenticated = async(req, res, next) => {
     try {
@@ -36,6 +36,14 @@ export const isAuthenticated = async(req, res, next) => {
         next();
     } catch (error) {
         console.log("Auth middleware error");
-        throw error;
+        if(error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError' ) {
+            return res.status(StatusCodes.FORBIDDEN).json(
+                customErrorResponse({
+                    explanation: 'Invalid data sent fro the client',
+                    message: 'Invalid auth token provided'
+                })
+            );
+        }
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(internalErrorResponse(error));
     }
 }
