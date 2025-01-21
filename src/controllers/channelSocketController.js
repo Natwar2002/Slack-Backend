@@ -4,7 +4,8 @@ export default function messageHandlers(socket) {
     socket.on(JOIN_CHANNEL, async function joinChannelHandler(data, cb) {
         const roomId = data.channelId;
         socket.join(roomId);
-        cb({
+        console.log(`User ${socket.id} joined the channel ${roomId}`);
+        cb?.({
             success: true,
             message: 'Successfully joined the channel',
             data: roomId,

@@ -32,7 +32,9 @@ export const getMessagesService = async(messageParams, page, limit, userId) => {
 export const createMessageService = async(message) => {
     try {
         const newMessage = await messageRepository.create(message);
-        return newMessage;
+        const messageDetails = await messageRepository.getMessageDetails(newMessage._id);
+
+        return messageDetails;
     } catch (error) {
         console.log("Create message service error: ", error);
         throw error;
