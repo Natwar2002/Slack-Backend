@@ -36,7 +36,7 @@ app.get('/ping', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('A user connected ', socket.id);
+    // console.log('A user connected ', socket.id);
     MessageSocketHandler(socket, io);
     MessageChannelHandler(socket, io);
 });
