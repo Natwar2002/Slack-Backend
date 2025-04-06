@@ -29,6 +29,10 @@ const userSchema = new mongoose.Schema(
                 'Username must contain only letters and numbers'
             ]
         },
+        socketId: { 
+            type: String, 
+            default: null 
+        },
         avatar: {
             type: String
         },
