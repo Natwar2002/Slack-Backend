@@ -5,7 +5,7 @@ import messageRepository from "../repositories/messageRepository.js"
 import ClientError from "../utils/errors/clientError.js";
 import { isUserMemberOfWorkspace } from "./workspaceService.js";
 
-export const getMessagesService = async(messageParams, page, limit, userId) => {
+export const getChannelMessages = async(messageParams, page, limit, userId) => {
     try {
         const channelDetails = await channelRepository.getChannelWithDetails(messageParams.channelId);
 
@@ -21,7 +21,17 @@ export const getMessagesService = async(messageParams, page, limit, userId) => {
             });
         }
 
-        const messages = await messageRepository.getPaginatedMessages(messageParams, page, limit);
+        const messages = await messageRepository.getChannelMessages(messageParams, page, limit);
+        return messages;
+    } catch (error) {
+        console.log("Get messages service error: ",error);
+        throw error
+    }
+}
+
+export const getDMs = async(messageParams, page, limit) => {
+    try {
+        const messages = await messageRepository.getMessages(messageParams, page, limit);
         return messages;
     } catch (error) {
         console.log("Get messages service error: ",error);

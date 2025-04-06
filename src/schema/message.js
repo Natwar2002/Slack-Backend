@@ -11,17 +11,22 @@ const messageSchema = new mongoose.Schema({
     channelId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Channel',
-        required: [true, "Channel ID is required"],
+        default: null
     },
     senderId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: [true, "Sender ID is required"],
     },
+    receiverId: {  
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        default: null
+    },
     workspaceId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Workspace",
-        required: [true, "Workspace ID is required"],
+        default: null
     }
 }, { timestamps: true });
 
